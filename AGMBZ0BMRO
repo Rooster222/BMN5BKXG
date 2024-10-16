@@ -1,0 +1,114 @@
+print('working')
+
+if game.PlaceId == 5130598377 then do
+
+    game:GetService("TeleportService"):Teleport(8008202756,localplayer)
+
+end
+end
+
+if game.PlaceId == 8008202756 then do
+
+    local args = {
+    [1] = "Training",
+    [2] = "NoTypes"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("ReplicatedModules"):WaitForChild("KnitPackage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("MatchmakingService"):WaitForChild("RF"):WaitForChild("MakeMatchmakingTeam"):InvokeServer(unpack(args))
+    wait(1)
+
+    local args = {
+    [1] = "QueueMatchmakingTeam"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("ReplicatedModules"):WaitForChild("KnitPackage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("MatchmakingService"):WaitForChild("RE"):WaitForChild("Signal"):FireServer(unpack(args))
+
+
+
+end
+end
+
+if game.PlaceId == 8023712967 then do
+
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Drake hub test", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+	Name = "👨🏿‍🌾",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+Tab:AddToggle({
+	Name = "AutoZoro!!!",
+	Default = true,
+	Callback = function(Value)
+		
+        getgenv().ZoroFarm = Value
+
+
+task.spawn(function()
+    local EHOnTop = game:GetService("ReplicatedStorage"):WaitForChild("ReplicatedModules"):WaitForChild("KnitPackage"):WaitForChild("Knit"):WaitForChild("Services");
+    local args = {[1] = "Zoros_Swords_Adventure"};
+    local connection
+    connection = game:GetService("RunService").RenderStepped:Connect(function()
+        if getgenv().ZoroFarm then
+            game:GetService("ReplicatedStorage").ReplicatedModules.KnitPackage.Knit.Services.DialogueService.RF.CheckDialogue:InvokeServer(unpack(args));
+        else
+            connection:Disconnect()
+            connection = nil
+        end
+    end)
+end)
+
+task.spawn(function()
+    local EHOnTop = game:GetService("ReplicatedStorage"):WaitForChild("ReplicatedModules"):WaitForChild("KnitPackage"):WaitForChild("Knit"):WaitForChild("Services");
+    local args = {[1] = "Zoros_Swords_Adventure"};
+    local connection
+    connection = game:GetService("RunService").RenderStepped:Connect(function()
+        if getgenv().ZoroFarm then
+            EHOnTop:WaitForChild("AdventureService").RF.PickedUpSword:InvokeServer();
+        else
+            connection:Disconnect()
+            connection = nil
+        end
+    end)
+end)
+
+	end    
+})
+
+Tab:AddToggle({
+	Name = "AutoAscend 👻",
+	Default = true,
+	Callback = function(Value)
+
+		getgenv().AutoAscend = Value
+
+task.spawn(function()
+ while getgenv().AutoAscend == true do
+ local args = {[1] = game:GetService("Players").LocalPlayer:WaitForChild("Data"):WaitForChild("Ability").Value};
+                    game:GetService("ReplicatedStorage"):WaitForChild("ReplicatedModules"):WaitForChild("KnitPackage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("LevelService"):WaitForChild("RF"):WaitForChild("AscendAbility"):InvokeServer(unpack(args));
+  wait(0.01)
+ end
+ end)
+end
+})
+OrionLib:Init()
+
+while true do
+
+wait(0.1)
+
+if workspace.ServerInformation.ServerTime.Value >= 10080 then
+
+    game:GetService("TeleportService"):Teleport(5130598377,localplayer)
+
+end
+end
+
+end
+end
