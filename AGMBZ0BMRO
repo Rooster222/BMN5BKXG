@@ -163,7 +163,7 @@ Tab:AddToggle({
                         },
                                                 {
                             name = 'Spec | Stand -> ' .. "**" .. AUTdata.Ability:GetAttribute("AbilityName") .. "**.",
-                            value = "Trait: " .. "**" .. AUTdata.Ability:GetAttribute("Trait") .. "**" .. "\n Ascensions: " .. "**" .. AUTdata.Ability:GetAttribute("AscensionRank") .. "**"
+                            value = "\n Ascensions: " .. "**" .. AUTdata.Ability:GetAttribute("AscensionRank") .. "**"
                         },
                     },
                     timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
