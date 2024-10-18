@@ -97,6 +97,82 @@ task.spawn(function()
  end)
 end
 })
+
+Tab:AddTextbox({
+	Name = "WebHook link ",
+	Default = "",
+	TextDisappear = false,
+	Callback = function(Value)
+		webhookURL = Value
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "WebHook time",
+	Default = "60",
+	TextDisappear = false,
+	Callback = function(Value)
+		webhookInterval = Value
+	end	  
+})
+
+
+Tab:AddToggle({
+	Name = "Enable",
+	Default = false,
+	Callback = function(Value)
+        whvalue = Value
+        task.spawn(function()
+            while whvalue do
+                local Time = os.date('!*t', OSTime)
+                local Avatar = 'https://cdn.discordapp.com/icons/1093147301926678681/5b8aab170e54ff79142923679bba8d48.webp?size=512&format=webp&width=0&height=0'
+                local Content = 'Account Hooked: ||'..game.Players.LocalPlayer.Name.."||"
+                local AUTdata = game.Players.LocalPlayer.Data
+                local Embed = {
+                    title = 'Expensive | HUB',
+                    color = 7405780,
+                    footer = {text = "A Universal Time 3.7 🏊"},
+                    author = {name = "Expensive | HUB", icon_url = Avatar },
+                    thumbnail = {url = "https://tr.rbxcdn.com/0031a06a10be15de074ce87e7f71f769/150/150/Image/Webp" },
+                    fields = {
+                        {
+                            name = ':dollar: Economy Category',
+                            value = ""
+                        },
+                        {
+                            name = 'UCoins:',
+                            value = AUTdata.UCoins.Value
+                        },
+                        {
+                            name = 'ʉShards:',
+                            value = game.Players.LocalPlayer.Data.Currency.Value
+                        },
+                        {
+                            name = 'ʉEvents:',
+                            value = AUTdata.EventCurrency.Value
+                        },
+                                                {
+                            name = 'Spec | Stand -> ' .. "**" .. AUTdata.Ability:GetAttribute("AbilityName") .. "**.",
+                            value = "Trait: " .. "**" .. AUTdata.Ability:GetAttribute("Trait") .. "**" .. "\n Ascensions: " .. "**" .. AUTdata.Ability:GetAttribute("AscensionRank") .. "**"
+                        },
+                    },
+                    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+                }
+
+                (syn and syn.request or http_request) {
+                    Url = webhookURL;
+                    Method = 'POST';
+                    Headers = {
+                        ['Content-Type'] = 'application/json';
+                    };
+                    Body = game:GetService'HttpService':JSONEncode({ content = Content; embeds = { Embed } });
+                };
+                task.wait(webhookInterval)
+            end
+        end)
+    end,
+ })
+ 
 OrionLib:Init()
 
 while true do
