@@ -1,5 +1,15 @@
 print('working')
 
+task.spawn(function()
+    if not getgenv().AntiAfk == true then getgenv().AntiAfk = true;
+        while true do task.wait(1100);
+            pcall(function()
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"RightBracket",false,game);
+            end)
+        end
+    end
+end)
+
 if game.PlaceId == 5130598377 then do
 
     game:GetService("TeleportService"):Teleport(8008202756,localplayer)
@@ -109,7 +119,7 @@ Tab:AddTextbox({
 
 Tab:AddTextbox({
 	Name = "WebHook time",
-	Default = "60",
+	Default = "360",
 	TextDisappear = false,
 	Callback = function(Value)
 		webhookInterval = Value
