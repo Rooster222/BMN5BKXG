@@ -119,7 +119,7 @@ Tab:AddTextbox({
 
 Tab:AddTextbox({
 	Name = "WebHook time",
-	Default = "360",
+	Default = "",
 	TextDisappear = false,
 	Callback = function(Value)
 		webhookInterval = Value
