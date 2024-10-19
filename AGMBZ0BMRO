@@ -189,7 +189,7 @@ while true do
 
 wait(0.1)
 
-if workspace.ServerInformation.ServerTime.Value >= 10080 then
+if workspace.ServerInformation.ServerTime.Value >= 5040 then
 
     game:GetService("TeleportService"):Teleport(5130598377,localplayer)
 
