@@ -1,0 +1,17 @@
+local function biggerinter()
+for _, inter in ipairs(workspace:GetDescendants()) do
+    if (inter.Name == "Interaction") then
+        inter.MaxActivationDistance = 100
+        inter.Exclusivity = "AlwaysShow"
+        inter.Enabled = true
+        end
+    end
+end
+
+
+print("done")
+while true do
+    game:GetService("VirtualInputManager"):SendKeyEvent(true,"E",false,game);
+    biggerinter()
+    wait(0.0000000000000000000000000000000000000000000001)
+    end 
